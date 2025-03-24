@@ -17,11 +17,6 @@ This project is built using the following technologies:
 
 - **Zustand**: A small, fast, and scalable state management library.
 
-## Notifications
-
-- **React Toastify**: A library for customizable toast notifications.
-- **Toastr**: A simple JavaScript toast notification library.
-
 ## Testing
 
 - **Jest**: A JavaScript testing framework.
