@@ -39,11 +39,13 @@ const ActionButton: React.FC<{
   icon: React.ReactNode;
   className?: string;
   ariaLabel?: string;
-}> = ({ onClick, icon, className, ariaLabel }) => (
+  title?: string;
+}> = ({ onClick, icon, className, ariaLabel, title }) => (
   <button
     onClick={onClick}
     className={`p-1 ${className}`}
     aria-label={ariaLabel}
+    title={title!}
   >
     {icon}
   </button>
@@ -60,17 +62,18 @@ const ProductItem: React.FC<{
   removeProduct: (productId: string, rowId: string) => void;
 }> = React.memo(({ product, rowId, onProductDragStart, removeProduct }) => (
   <div
-    className="product-item flex flex-col items-center text-center"
+    className="product-item flex flex-col items-center text-center p-2 sm:p-4"
     draggable
     onDragStart={() => onProductDragStart(product, rowId)}
   >
-    <div className="relative w-36 h-52 mb-2">
+    <div className="relative w-28 h-40 sm:w-36 sm:h-52 md:w-48 md:h-64 mb-2">
       <img
         src={product.imageUrl}
         alt={product.name}
         className="w-full h-full object-cover rounded-md"
       />
       <ActionButton
+        title="Delete product from row"
         ariaLabel="deleteProduct"
         onClick={() => removeProduct(product.id, rowId)}
         icon={
@@ -79,8 +82,12 @@ const ProductItem: React.FC<{
         className="absolute top-1 right-1 rounded-full shadow-md"
       />
     </div>
-    <h3 className="text-sm font-semibold">{product.name}</h3>
-    <p className="text-sm text-gray-600">${product.price.toFixed(2)}</p>
+    <h3 className="text-xs sm:text-sm md:text-base font-semibold">
+      {product.name}
+    </h3>
+    <p className="text-xs sm:text-sm md:text-base text-gray-600">
+      ${product.price.toFixed(2)}
+    </p>
   </div>
 ));
 
@@ -106,10 +113,20 @@ const ProductRow: React.FC<ProductRowProps> = ({
     }
     onDragStart(index);
   };
+  const handleRemoveRow = () => {
+    if (window.confirm("Are you sure you want to delete this row?")) {
+      removeRow(row.id);
+    }
+  };
 
+  const handleRemoveProduct = (productId: string) => {
+    if (window.confirm("Are you sure you want to delete this product?")) {
+      removeProduct(productId, row.id);
+    }
+  };
   return (
     <div
-      className="product-row cursor-grab flex flex-col items-center p-4 border rounded-lg bg-white shadow-md text-black"
+      className="product-row cursor-grab flex flex-col items-center p-4 border rounded-lg bg-white shadow-md text-black w-full sm:w-auto"
       draggable
       onDragStart={handleRowDragStart}
       onDragOver={(e) => {
@@ -124,23 +141,21 @@ const ProductRow: React.FC<ProductRowProps> = ({
         </h3>
         <div className="flex space-x-2">
           <ActionButton
+            title="Edit Row"
             ariaLabel="edit"
             onClick={() => editRow(row)}
-            icon={
-              <PencilIcon className="h-5 w-5 text-blue-500 hover:text-blue-700" />
-            }
+            icon={<PencilIcon className="h-8 w-8 hover:text-blue-700" />}
           />
           <ActionButton
+            title="Delete Row"
             ariaLabel="deleteRow"
-            onClick={() => removeRow(row.id)}
-            icon={
-              <XCircleIcon className="h-5 w-5 text-red-500 hover:text-red-700" />
-            }
+            onClick={() => handleRemoveRow()}
+            icon={<XCircleIcon className="h-8 w-8 hover:text-red-700" />}
           />
         </div>
       </div>
       <div
-        className={`products w-full flex space-x-8 ${getAlignmentClass(
+        className={`products w-full flex space-x-8 overflow-clip ${getAlignmentClass(
           row.alignment
         )}`}
         onDragOver={(e) => e.preventDefault()}
@@ -156,7 +171,7 @@ const ProductRow: React.FC<ProductRowProps> = ({
             product={product}
             rowId={row.id}
             onProductDragStart={onProductDragStart}
-            removeProduct={removeProduct}
+            removeProduct={(productId) => handleRemoveProduct(productId)}
           />
         ))}
         {row.products.length === 0 && (

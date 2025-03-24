@@ -145,7 +145,7 @@ export const useEditorLogic = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      setIsLoading(true); // Inicia la carga
+      setIsLoading(true);
       try {
         const response = await fetch("/api/items");
         const data: Product[] = await response.json();
@@ -153,7 +153,7 @@ export const useEditorLogic = () => {
       } catch (error) {
         console.error("Error fetching products:", error);
       } finally {
-        setIsLoading(false); // Finaliza la carga
+        setIsLoading(false);
       }
     };
 

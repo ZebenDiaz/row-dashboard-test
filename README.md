@@ -1,6 +1,52 @@
-# Welcome to Remix!
+# README: Tech Stack
 
-- 📖 [Remix docs](https://remix.run/docs)
+This project is built using the following technologies:
+
+## Framework
+
+- **Remix**: A full-stack web framework for building modern, scalable web applications.
+
+## Frontend
+
+- **React**: A JavaScript library for building user interfaces.
+- **Tailwind CSS**: A utility-first CSS framework for styling.
+- **Heroicons**: Beautiful, hand-crafted SVG icons for React.
+- **Framer Motion**: A library for animations and gestures in React.
+
+## State Management
+
+- **Zustand**: A small, fast, and scalable state management library.
+
+## Notifications
+
+- **React Toastify**: A library for customizable toast notifications.
+- **Toastr**: A simple JavaScript toast notification library.
+
+## Testing
+
+- **Jest**: A JavaScript testing framework.
+- **Testing Library**: Tools for testing React components.
+
+## TypeScript
+
+- **TypeScript**: A strongly typed programming language that builds on JavaScript.
+
+## Build Tools
+
+- **Vite**: A fast build tool and development server.
+- **PostCSS**: A tool for transforming CSS with JavaScript plugins.
+- **Autoprefixer**: A PostCSS plugin to add vendor prefixes automatically.
+
+## Linting and Formatting
+
+- **ESLint**: A tool for identifying and fixing problems in JavaScript/TypeScript code.
+- **TypeScript ESLint**: Linting for TypeScript code.
+- **eslint-plugin-react**: Linting rules for React.
+- **eslint-plugin-jsx-a11y**: Accessibility linting for JSX.
+
+## Node.js
+
+- Requires **Node.js** version >=20.0.0.
 
 ## Development
 

@@ -3,6 +3,7 @@ import ProductRow from "../components/ProductRow";
 import RowModal from "~/components/RowModal";
 import ProductModal from "~/components/ProductModal";
 import ZoomControls from "~/components/ZoomControls";
+import { motion } from "framer-motion";
 
 const Editor = () => {
   const {
@@ -26,35 +27,38 @@ const Editor = () => {
     setIsProductModalOpen,
     setZoomLevel,
   } = useEditorLogic();
-  if (isLoading) {
-    // Mostrar spinner mientras se cargan los datos
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-solid"></div>
-      </div>
-    );
-  }
+
+  // if (isLoading) {
+  //   return (
+  //     <div className="flex items-center justify-center min-h-screen">
+  //       <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-solid"></div>
+  //     </div>
+  //   );
+  // }
   return (
     <div className="flex flex-col items-center min-h-screen p-20 scroll-smooth">
-      <div className="flex flex-row self-start space-x-4 mb-4">
-        <button
-          onClick={() => {
-            setIsRowModalOpen(true);
-            setIsProductModalOpen(false);
-          }}
-          className="px-4 py-2 bg-transparent border border-blue-500 text-blue-500 rounded hover:bg-blue-500 hover:text-white w-[200px]"
-        >
-          Add Row
-        </button>
-        <button
-          onClick={() => {
-            setIsRowModalOpen(false);
-            setIsProductModalOpen(true);
-          }}
-          className="px-4 py-2 bg-transparent border border-green-500 text-green-500 rounded hover:bg-green-500 hover:text-white w-[200px]"
-        >
-          Manage Products
-        </button>
+      <div className="flex flex-row self-start space-x-4 mb-4 w-full justify-between">
+        <div className="flex gap-10">
+          <button
+            onClick={() => {
+              setIsRowModalOpen(true);
+              setIsProductModalOpen(false);
+            }}
+            className="px-4 py-2 bg-transparent border rounded hover:bg-blue-500 hover:text-white w-[200px]"
+          >
+            Add Row
+          </button>
+          <button
+            onClick={() => {
+              setIsRowModalOpen(false);
+              setIsProductModalOpen(true);
+            }}
+            className="px-4 py-2 bg-transparent border rounded hover:bg-green-500 hover:text-white w-[200px]"
+          >
+            Manage Products
+          </button>
+        </div>
+
         <ZoomControls zoomLevel={zoomLevel} setZoomLevel={setZoomLevel} />
       </div>
       <div
@@ -69,12 +73,17 @@ const Editor = () => {
             <p className="text-gray-500 text-lg">
               No rows have been created yet. Add one to visualize it.
             </p>
-            <button
-              onClick={() => setIsRowModalOpen(true)}
-              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+
+            <motion.div
+              onClick={() => {
+                setIsRowModalOpen(true);
+                setIsProductModalOpen(false);
+              }}
+              layoutId="hero-button"
+              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 cursor-pointer"
             >
               Add Row
-            </button>
+            </motion.div>
           </div>
         ) : (
           rows.map((row, index) => (

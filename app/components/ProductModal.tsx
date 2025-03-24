@@ -25,6 +25,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
   const [price, setPrice] = useState<number>(0);
   const [imageUrl, setImageUrl] = useState<string>("");
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
+  const [notification, setNotification] = useState<string | null>(null);
 
   useEffect(() => {
     if (!isOpen) {
@@ -32,12 +33,23 @@ const ProductModal: React.FC<ProductModalProps> = ({
       setPrice(0);
       setImageUrl("");
       setEditingProduct(null);
+      setNotification(null);
     }
   }, [isOpen]);
 
+  const validateUrl = (url: string): boolean => {
+    const urlPattern = /^(https?:\/\/)?([\w-]+\.)+[\w-]+(\/[\w-]*)*$/i;
+    return urlPattern.test(url);
+  };
+
   const handleAddOrUpdateProduct = () => {
     if (!name.trim() || price <= 0 || !imageUrl.trim()) {
-      alert("Please fill out all fields correctly.");
+      setNotification("Please fill out all fields correctly.");
+      return;
+    }
+
+    if (!validateUrl(imageUrl)) {
+      setNotification("Please enter a valid URL for the image.");
       return;
     }
 
@@ -78,6 +90,13 @@ const ProductModal: React.FC<ProductModalProps> = ({
     }
   };
 
+  const resetForm = () => {
+    setEditingProduct(null);
+    setName("");
+    setPrice(0);
+    setImageUrl("");
+  };
+
   return (
     <div
       className={`fixed inset-y-0 right-0 top-20 w-96 bg-white text-black shadow-lg transform transition-transform duration-300 ${
@@ -101,13 +120,15 @@ const ProductModal: React.FC<ProductModalProps> = ({
               <div className="flex space-x-2">
                 <button
                   onClick={() => handleEditProduct(product)}
-                  className="text-blue-500 hover:text-blue-800"
+                  className="hover:text-blue-800"
+                  title="Edit Product"
                 >
                   <PencilIcon className="h-5 w-5" />
                 </button>
                 <button
                   onClick={() => handleDeleteProduct(product.id)}
-                  className="text-red-500 hover:text-red-800"
+                  className="hover:text-red-800"
+                  title="Delete Product"
                 >
                   <XCircleIcon className="h-5 w-5" />
                 </button>
@@ -117,8 +138,16 @@ const ProductModal: React.FC<ProductModalProps> = ({
         </div>
         <hr className="my-4" />
 
-        <h2 className="text-xl font-bold mb-4">
+        <h2 className="text-xl font-bold mb-4 gap-2 flex items-center justify-between">
           {editingProduct ? "Edit Product" : "Add New Product"}
+          {editingProduct && (
+            <button
+              onClick={resetForm}
+              className="text-sm text-blue-500  hover:text-blue-800 underline"
+            >
+              New Product
+            </button>
+          )}
         </h2>
         <div className="mb-4">
           <label className="block text-sm font-medium mb-1">Name</label>
@@ -165,6 +194,11 @@ const ProductModal: React.FC<ProductModalProps> = ({
           </button>
         </div>
       </div>
+      {notification && (
+        <div className="fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded shadow-lg">
+          {notification}
+        </div>
+      )}
     </div>
   );
 };
