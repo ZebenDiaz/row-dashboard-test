@@ -1,5 +1,12 @@
-import { Link } from "@remix-run/react";
+import { Link, MetaFunction } from "@remix-run/react";
 import { motion } from "framer-motion";
+export const meta: MetaFunction = () => {
+  return [
+    {
+      title: "Category Manager",
+    },
+  ];
+};
 
 const Index = () => {
   return (

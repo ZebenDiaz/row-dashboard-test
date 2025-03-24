@@ -4,7 +4,6 @@ import { useStore } from "~/store/useStore";
 
 export const useEditorLogic = () => {
   const { setAvailableItems } = useStore();
-  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [rows, setRows] = useState<Row[]>([]);
   const [isRowModalOpen, setIsRowModalOpen] = useState<boolean>(false);
   const [isProductModalOpen, setIsProductModalOpen] = useState<boolean>(false);
@@ -145,15 +144,12 @@ export const useEditorLogic = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      setIsLoading(true);
       try {
         const response = await fetch("/api/items");
         const data: Product[] = await response.json();
         setAvailableItems(data);
       } catch (error) {
         console.error("Error fetching products:", error);
-      } finally {
-        setIsLoading(false);
       }
     };
 
@@ -161,7 +157,6 @@ export const useEditorLogic = () => {
   }, [setAvailableItems]);
 
   return {
-    isLoading,
     rows,
     isRowModalOpen,
     isProductModalOpen,

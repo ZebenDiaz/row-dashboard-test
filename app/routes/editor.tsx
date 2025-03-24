@@ -4,10 +4,16 @@ import RowModal from "~/components/RowModal";
 import ProductModal from "~/components/ProductModal";
 import ZoomControls from "~/components/ZoomControls";
 import { motion } from "framer-motion";
-
+import { MetaFunction } from "@remix-run/node";
+export const meta: MetaFunction = () => {
+  return [
+    {
+      title: "Category Manager",
+    },
+  ];
+};
 const Editor = () => {
   const {
-    isLoading,
     rows,
     isRowModalOpen,
     isProductModalOpen,
@@ -28,13 +34,6 @@ const Editor = () => {
     setZoomLevel,
   } = useEditorLogic();
 
-  // if (isLoading) {
-  //   return (
-  //     <div className="flex items-center justify-center min-h-screen">
-  //       <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-solid"></div>
-  //     </div>
-  //   );
-  // }
   return (
     <div className="flex flex-col items-center min-h-screen p-20 scroll-smooth">
       <div className="flex flex-row self-start space-x-4 mb-4 w-full justify-between">

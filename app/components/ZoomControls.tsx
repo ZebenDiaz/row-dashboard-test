@@ -16,7 +16,7 @@ const ZoomControls: React.FC<ZoomControlsProps> = ({
       <button
         onClick={() => setZoomLevel((prev) => Math.max(prev - 10, 30))}
         disabled={zoomLevel <= 30}
-        className="p-2 rounded-full bg-gray-200 hover:bg-gray-300 disabled:bg-gray-300"
+        className="p-2 rounded-full hover:bg-gray-300 disabled:bg-gray-300"
       >
         <MinusIcon className="h-6 w-6 text-gray-700" />
       </button>
@@ -24,7 +24,7 @@ const ZoomControls: React.FC<ZoomControlsProps> = ({
       <button
         onClick={() => setZoomLevel((prev) => Math.min(prev + 10, 200))}
         disabled={zoomLevel >= 200}
-        className="p-2 rounded-full bg-gray-200 hover:bg-gray-300 disabled:bg-gray-300"
+        className="p-2 rounded-full hover:bg-gray-300 disabled:bg-gray-300"
       >
         <PlusIcon className="h-6 w-6 text-gray-700" />
       </button>

@@ -70,7 +70,7 @@ const ProductItem: React.FC<{
       <img
         src={product.imageUrl}
         alt={product.name}
-        className="w-full h-full object-cover rounded-md"
+        className="w-full h-full object-cover rounded-md cursor-grab"
       />
       <ActionButton
         title="Delete product from row"
