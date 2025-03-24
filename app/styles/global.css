@@ -1,0 +1,74 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.product-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+    transition: background-color 0.3s;
+}
+
+.product-row:hover {
+    background-color: #e9ecef;
+}
+
+.zoom-controls {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.template-alignment {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.drag-and-drop-area {
+    border: 2px dashed #007bff;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #f1f3f5;
+    transition: background-color 0.3s;
+}
+
+.drag-and-drop-area.drag-over {
+    background-color: #e9ecef;
+}
+
+.button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.zoom-in, .zoom-out {
+    margin: 0 10px;
+}
