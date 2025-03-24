@@ -38,7 +38,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
   }, [isOpen]);
 
   const validateUrl = (url: string): boolean => {
-    const urlPattern = /^(https?:\/\/)?([\w-]+\.)+[\w-]+(\/[\w-]*)*$/i;
+    const urlPattern = /^(https?:\/\/)[\w.-]+(\.[a-z]{2,})/i;
     return urlPattern.test(url);
   };
 
