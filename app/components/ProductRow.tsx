@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Row } from "../models";
 import XCircleIcon from "@heroicons/react/24/outline/XCircleIcon";
 import { PencilIcon } from "@heroicons/react/24/outline";
@@ -60,36 +60,47 @@ const ProductItem: React.FC<{
     sourceRowId: string
   ) => void;
   removeProduct: (productId: string, rowId: string) => void;
-}> = React.memo(({ product, rowId, onProductDragStart, removeProduct }) => (
-  <div
-    className="product-item flex flex-col items-center text-center p-2 sm:p-4"
-    draggable
-    onDragStart={() => onProductDragStart(product, rowId)}
-  >
-    <div className="relative w-28 h-40 sm:w-36 sm:h-52 md:w-48 md:h-64 mb-2">
-      <img
-        src={product.imageUrl}
-        alt={product.name}
-        className="w-full h-full object-cover rounded-md cursor-grab"
-      />
-      <ActionButton
-        title="Delete product from row"
-        ariaLabel="deleteProduct"
-        onClick={() => removeProduct(product.id, rowId)}
-        icon={
-          <XCircleIcon className="h-5 w-5 text-red-500 hover:text-red-900" />
-        }
-        className="absolute top-1 right-1 rounded-full shadow-md"
-      />
+}> = React.memo(({ product, rowId, onProductDragStart, removeProduct }) => {
+  const [isLoading, setIsLoading] = useState(true);
+  return (
+    <div
+      className="product-item flex flex-col items-center text-center p-2 sm:p-4"
+      draggable
+      onDragStart={() => onProductDragStart(product, rowId)}
+    >
+      <div className="relative w-28 h-40 sm:w-36 sm:h-52 md:w-48 md:h-64 mb-2">
+        {isLoading && (
+          <div className="absolute inset-0 flex items-center justify-center bg-gray-200 rounded-md">
+            <span className="text-gray-500 text-sm">Loading...</span>
+          </div>
+        )}
+        <img
+          src={product.imageUrl}
+          alt={product.name}
+          className={`w-full h-full object-cover rounded-md cursor-grab ${
+            isLoading ? "hidden" : "block"
+          }`}
+          onLoad={() => setIsLoading(false)}
+        />
+        <ActionButton
+          title="Delete product from row"
+          ariaLabel="deleteProduct"
+          onClick={() => removeProduct(product.id, rowId)}
+          icon={
+            <XCircleIcon className="h-5 w-5 text-red-500 hover:text-red-900" />
+          }
+          className="absolute top-1 right-1 rounded-full shadow-md"
+        />
+      </div>
+      <h3 className="text-xs sm:text-sm md:text-base font-semibold">
+        {product.name}
+      </h3>
+      <p className="text-xs sm:text-sm md:text-base text-gray-600">
+        ${product.price.toFixed(2)}
+      </p>
     </div>
-    <h3 className="text-xs sm:text-sm md:text-base font-semibold">
-      {product.name}
-    </h3>
-    <p className="text-xs sm:text-sm md:text-base text-gray-600">
-      ${product.price.toFixed(2)}
-    </p>
-  </div>
-));
+  );
+});
 
 const ProductRow: React.FC<ProductRowProps> = ({
   row,

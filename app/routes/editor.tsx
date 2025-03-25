@@ -38,24 +38,31 @@ const Editor = () => {
     <div className="flex flex-col items-center min-h-screen p-20 scroll-smooth">
       <div className="flex flex-row self-start space-x-4 mb-4 w-full justify-between">
         <div className="flex gap-10">
-          <button
+          <motion.button
             onClick={() => {
               setIsRowModalOpen(true);
               setIsProductModalOpen(false);
+              handleEditRow(null);
+            }}
+            whileHover={{
+              scale: 1.1,
             }}
             className="px-4 py-2 bg-transparent border rounded hover:bg-blue-500 hover:text-white w-[200px]"
           >
             Add Row
-          </button>
-          <button
+          </motion.button>
+          <motion.button
             onClick={() => {
               setIsRowModalOpen(false);
               setIsProductModalOpen(true);
             }}
+            whileHover={{
+              scale: 1.1,
+            }}
             className="px-4 py-2 bg-transparent border rounded hover:bg-green-500 hover:text-white w-[200px]"
           >
             Manage Products
-          </button>
+          </motion.button>
         </div>
 
         <ZoomControls zoomLevel={zoomLevel} setZoomLevel={setZoomLevel} />
@@ -80,6 +87,9 @@ const Editor = () => {
               }}
               layoutId="hero-button"
               className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 cursor-pointer"
+              whileHover={{
+                scale: 1.1,
+              }}
             >
               Add Row
             </motion.div>

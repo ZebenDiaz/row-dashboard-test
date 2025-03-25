@@ -1,6 +1,5 @@
-import { PlusIcon } from "@heroicons/react/24/outline";
-import { MinusIcon } from "@heroicons/react/24/outline";
-import React, { useState } from "react";
+import React from "react";
+import { PlusIcon, MinusIcon } from "@heroicons/react/24/outline";
 
 interface ZoomControlsProps {
   zoomLevel: number;

@@ -42,7 +42,7 @@ export const useEditorLogic = () => {
     setRows(rows.filter((row) => row.id !== rowId));
   };
 
-  const handleEditRow = (row: Row): void => {
+  const handleEditRow = (row: Row | null): void => {
     setSelectedRow(row);
     setIsRowModalOpen(true);
   };

@@ -61,15 +61,21 @@ describe("ProductRow Component", () => {
   });
 
   it("calls removeRow when the delete button is clicked", () => {
+    jest.spyOn(window, "confirm").mockImplementation(() => true);
+
     renderComponent();
 
     const deleteButton = screen.getByRole("button", { name: /deleteRow/i });
     fireEvent.click(deleteButton);
 
     expect(mockRemoveRow).toHaveBeenCalledWith(mockRow.id);
+
+    jest.restoreAllMocks();
   });
 
   it("calls removeProduct when the product delete button is clicked", () => {
+    jest.spyOn(window, "confirm").mockImplementation(() => true);
+
     renderComponent();
 
     const productDeleteButton = screen.getByRole("button", {
@@ -81,5 +87,7 @@ describe("ProductRow Component", () => {
       mockRow.products[0].id,
       mockRow.id
     );
+
+    jest.restoreAllMocks();
   });
 });

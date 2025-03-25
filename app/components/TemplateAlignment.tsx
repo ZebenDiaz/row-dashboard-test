@@ -16,7 +16,7 @@ const TemplateAlignment: React.FC<TemplateAlignmentProps> = ({
   };
 
   return (
-    <div className="template-alignment p-4">
+    <div className="template-alignment">
       <label htmlFor="alignment" className="block mb-2 font-semibold">
         Select Template Alignment:
       </label>
@@ -36,9 +36,9 @@ const TemplateAlignment: React.FC<TemplateAlignmentProps> = ({
           alignment
         )}`}
       >
-        <div className="placeholder w-16 h-16 bg-gray-300 rounded"></div>
-        <div className="placeholder w-16 h-16 bg-gray-300 rounded"></div>
-        <div className="placeholder w-16 h-16 bg-gray-300 rounded"></div>
+        <div className="placeholder w-12 h-12 bg-gray-300 rounded"></div>
+        <div className="placeholder w-12 h-12 bg-gray-300 rounded"></div>
+        <div className="placeholder w-12 h-12 bg-gray-300 rounded"></div>
       </div>
     </div>
   );
