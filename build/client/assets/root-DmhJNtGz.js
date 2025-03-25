@@ -1,0 +1,10 @@
+import{r as i,j as e}from"./index-7zqVQZSl.js";import{u as d,a as f,b as x,c as y,_ as g,L as w,O as j,M as S,d as k,S as L}from"./components-BGXZoW8e.js";/**
+ * @remix-run/react v2.16.2
+ *
+ * Copyright (c) Remix Software Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE.md file in the root directory of this source tree.
+ *
+ * @license MIT
+ */let a="positions";function M({getKey:t,...l}){let{isSpaMode:c}=d(),o=f(),p=x();y({getKey:t,storageKey:a});let u=i.useMemo(()=>{if(!t)return null;let s=t(o,p);return s!==o.key?s:null},[]);if(c)return null;let m=((s,h)=>{if(!window.history.state||!window.history.state.key){let r=Math.random().toString(32).slice(2);window.history.replaceState({key:r},"")}try{let n=JSON.parse(sessionStorage.getItem(s)||"{}")[h||window.history.state.key];typeof n=="number"&&window.scrollTo(0,n)}catch(r){console.error(r),sessionStorage.removeItem(s)}}).toString();return i.createElement("script",g({},l,{suppressHydrationWarning:!0,dangerouslySetInnerHTML:{__html:`(${m})(${JSON.stringify(a)}, ${JSON.stringify(u)})`}}))}const N=()=>e.jsx("header",{className:"fixed top-0 left-0 w-full flex items-center justify-center px-4 py-2 bg-white shadow-md z-50",children:e.jsx(w,{className:"flex items-center",to:"/",children:e.jsx("img",{src:"/Zara_Logo.svg",alt:"Zara Logo",className:"w-24"})})}),b=()=>[{rel:"preconnect",href:"https://fonts.googleapis.com"},{rel:"preconnect",href:"https://fonts.gstatic.com",crossOrigin:"anonymous"},{rel:"stylesheet",href:"https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"}];function v({children:t}){return e.jsxs("html",{lang:"en",children:[e.jsxs("head",{children:[e.jsx("meta",{charSet:"utf-8"}),e.jsx("meta",{name:"viewport",content:"width=device-width, initial-scale=1"}),e.jsx(S,{}),e.jsx(k,{})]}),e.jsxs("body",{children:[e.jsx(N,{}),t,e.jsx(M,{}),e.jsx(L,{})]})]})}function I(){return e.jsx(j,{})}export{v as Layout,I as default,b as links};
