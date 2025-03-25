@@ -1,3 +1,52 @@
+# Application Flow Summary
+
+## Landing Page (`routes/_index`)
+
+The application starts at the landing page, which serves as the entry point.  
+The user is presented with a button labeled **"Go to Editor"** that navigates to the `/editor` route.
+
+## Editor Page (`routes/editor`)
+
+The editor is the main workspace where users can manage rows and products.
+
+### Key Features
+
+- **Add Row**:  
+   Users can click the **"Add Row"** button to open a modal (`RowModal`) for creating a new row. The modal allows users to specify the row's name, alignment, and associated products.
+
+- **Edit Row**:  
+   Users can edit an existing row by interacting with the row's edit button. This opens the same modal (`RowModal`) pre-filled with the row's current data.
+
+- **Manage Products**:  
+   Clicking the **"Manage Products"** button opens the `ProductModal`, where users can update product details.
+
+## Row Management
+
+Rows are displayed as draggable components (`ProductRow`) in the editor.  
+Users can:
+
+- Drag and drop rows to reorder them.
+- Delete rows using the delete button, which prompts a confirmation dialog.
+- Add or remove products within a row.
+
+## Product Management
+
+Products are managed within rows or globally via the `ProductModal`.  
+Users can:
+
+- Add new products.
+- Edit existing products.
+- Remove products from rows.
+
+## Zoom Controls
+
+The editor includes zoom controls (`ZoomControls`) to adjust the scale of the workspace for better visualization.
+
+## State Management
+
+The application uses a custom hook (`useEditorLogic`) to manage the state of rows, products, and modals.  
+State updates trigger re-renders to reflect changes in the UI.
+
 # README: Tech Stack
 
 This project is built using the following technologies:
